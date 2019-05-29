@@ -1,0 +1,7 @@
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldest,table,td,img,div,dl,dt,dd,input{margin:0;padding:0;}
+body{font-size:12px; font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, sans-serif;}
+li{list-style:none}
+a{text-decoration:none;}
+img{border: none;}
+.clearfix{zoom:1}
+.clearfix:after{contant:"";display:block;clear:both;}
