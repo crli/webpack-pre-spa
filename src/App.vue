@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link>
     </p>
     <router-view />
+    <button @click="show">2222</button>
   </div>
 </template>
 
@@ -17,7 +18,11 @@ export default {
     }
   },
   mounted() {
-    swal('Hello world!')
+  },
+  methods: {
+    show() {
+      swal('Hello world!')
+    }
   }
 }
 </script>
