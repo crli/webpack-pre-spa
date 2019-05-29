@@ -7,13 +7,13 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, dir)
 }
 function assetsPath(_path) {
   return path.posix.join('static', _path)
 }
-let devMode = process.env.NODE_ENV
+const devMode = process.env.NODE_ENV
 module.exports = {
   mode: devMode,
   entry: {
@@ -40,12 +40,12 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          devMode === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,    
+          devMode === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
-            options:{
-              config:{
+            options: {
+              config: {
                 path: 'postcss.config.js'
               }
             }
@@ -59,8 +59,8 @@ module.exports = {
           'css-loader',
           {
             loader: 'postcss-loader',
-            options:{
-              config:{
+            options: {
+              config: {
                 path: 'postcss.config.js'
               }
             }
@@ -95,7 +95,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json','.css','.scss'],
+    extensions: ['.js', '.vue', '.json', '.css', '.scss'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src')
@@ -105,14 +105,14 @@ module.exports = {
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: devMode === 'development' ? '[name].css' : assetsPath('css/[name].css'),
-      chunkFilename: devMode === 'development' ? '[name].css' : assetsPath('css/[name].[chunkhash].css'),
+      chunkFilename: devMode === 'development' ? '[name].css' : assetsPath('css/[name].[chunkhash].css')
     })
   ]
 }
 if (devMode === 'production') {
   // module.exports.devtool = '#source-map'
   module.exports.optimization = {
-    splitChunks:{
+    splitChunks: {
       name: 'common',
       chunks: 'all'
     }
@@ -140,7 +140,7 @@ if (devMode === 'production') {
 
     new PrerenderSPAPlugin({
       staticDir: path.join(__dirname, 'dist'),
-      routes: [ '/', '/about' ],
+      routes: ['/', '/about'],
 
       renderer: new Renderer({
         inject: {
@@ -159,12 +159,12 @@ if (devMode === 'production') {
     port: 3123,
     // host: '192.168.1.122',
     open: true,
-    hot:true,
-    overlay:{
+    hot: true,
+    overlay: {
       errors: true
     }
-  },
-  module.exports.devtool = 'cheap-module-eval-source-map',
+  }
+  module.exports.devtool = 'cheap-module-eval-source-map'
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
@@ -176,6 +176,6 @@ if (devMode === 'production') {
       template: 'index.html',
       filename: 'index.html',
       favicon: 'td_icon.ico'
-    }),
+    })
   ])
 }
